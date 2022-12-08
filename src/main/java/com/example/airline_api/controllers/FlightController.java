@@ -1,7 +1,9 @@
 package com.example.airline_api.controllers;
 
 import com.example.airline_api.models.Flight;
+import com.example.airline_api.repository.FlightRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -11,10 +13,13 @@ import java.util.List;
 @RequestMapping("/flights")
 public class FlightController {
 
+    @Autowired
+    FlightRepository flightRepository;
+
     // Display all available flights
     @GetMapping
     public ResponseEntity<List<Flight>> getAllFlights(){
-        return new ResponseEntity<>()
+        return new ResponseEntity<>(flightRepository.findAll(), HttpStatus.OK);
     }
 
     // Display a specific flight
