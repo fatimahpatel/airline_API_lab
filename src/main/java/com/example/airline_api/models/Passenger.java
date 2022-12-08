@@ -1,12 +1,20 @@
 package com.example.airline_api.models;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
+@Entity
+@Table (name = "passengers")
 public class Passenger {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private long id;
+    @Column
     private String name;
+    @Column
     private String email;
     private List<Flight> flights;
 
