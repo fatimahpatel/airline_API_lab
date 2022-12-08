@@ -26,11 +26,13 @@ public class PassengerController {
     // Display specific passenger details
     @GetMapping(value = "/{id}")
     public ResponseEntity<Optional<Passenger>> getPassengerById(@PathVariable Long id){
-        return new ResponseEntity<>(passengerRepository.findById(id), HttpStatus.OK);
+        return new ResponseEntity<>(passengerRepository.findById(id), HttpStatus.OK);}
 
     // Add a new passenger
     @PostMapping
-    public ResponseEntity<Passenger> addNewPassenger(){
-        return n
+    public ResponseEntity<List<Passenger>> addNewPassenger(@RequestBody Passenger passenger){
+        passengerRepository.save(passenger);
+        return new ResponseEntity(passengerRepository.findAll(), HttpStatus.OK);
+        }
 
 }
