@@ -14,7 +14,7 @@ public class FlightController {
     // Display all available flights
     @GetMapping
     public ResponseEntity<List<Flight>> getAllFlights(){
-        return null;
+        return new ResponseEntity<>()
     }
 
     // Display a specific flight
