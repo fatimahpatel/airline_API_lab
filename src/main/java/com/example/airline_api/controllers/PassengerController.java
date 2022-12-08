@@ -1,6 +1,9 @@
 package com.example.airline_api.controllers;
 
 import com.example.airline_api.models.Passenger;
+import com.example.airline_api.repository.PassengerRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -10,10 +13,13 @@ import java.util.List;
 @RequestMapping("/passengers")
 public class PassengerController {
 
+    @Autowired
+    PassengerRepository passengerRepository;
+
     // Display details of all passengers
     @GetMapping
     public ResponseEntity<List<Passenger>> getAllPassengers(){
-        return null;
+        return new ResponseEntity<>(passengerRepository.findAll(), HttpStatus.OK);
     }
 
     // Display specific passenger details
